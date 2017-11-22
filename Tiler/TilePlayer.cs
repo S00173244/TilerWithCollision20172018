@@ -20,17 +20,30 @@ namespace Tiler
         {
             get
             {
-                return new Rectangle(position.ToPoint(), 
+                return new Rectangle(Position.ToPoint(), 
                     new Point(texture.Width, texture.Height));
             }
 
+        }
+
+        public Vector2 Position
+        {
+            get
+            {
+                return position;
+            }
+
+            set
+            {
+                position = value;
+            }
         }
 
         public TilePlayer(Texture2D tx,
             Vector2 startPos)
         {
             texture = tx;
-            position = previousPosition = startPos;
+            Position = previousPosition = startPos;
             speed = 5;
 
         }
@@ -38,27 +51,27 @@ namespace Tiler
         public void Collision(Collider c)
         {
             if (CollisionField.Intersects(c.CollisionField))
-                position = previousPosition;
+                Position = previousPosition;
         }
 
         public void update(GameTime gameTime)
         {
-            previousPosition = position;
+            previousPosition = Position;
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                this.position += new Vector2(1, 0) * speed;
+                this.Position += new Vector2(1, 0) * speed;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                this.position += new Vector2(-1, 0) * speed;
+                this.Position += new Vector2(-1, 0) * speed;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                this.position += new Vector2(0, -1) * speed;
+                this.Position += new Vector2(0, -1) * speed;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                this.position += new Vector2(0, 1) * speed;
+                this.Position += new Vector2(0, 1) * speed;
             }
 
         }

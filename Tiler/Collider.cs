@@ -14,7 +14,7 @@ namespace Tiler
         public int tileX;
         public int tileY;
         public Texture2D texture;
-        
+        bool visible = false;
 
         public Vector2 WorldPosition
         {
@@ -43,6 +43,7 @@ namespace Tiler
 
         public void Draw(SpriteBatch sp)
         {
+            if (visible)
             sp.Draw(texture, CollisionField, Color.White);
         }
     }
